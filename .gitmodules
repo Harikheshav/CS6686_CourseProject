@@ -4,3 +4,6 @@
 [submodule "FireMarshal"]
 	path = FireMarshal
 	url = https://github.com/firesim/FireMarshal.git
+[submodule "chipyard"]
+	path = chipyard
+	url = https://github.com/ucb-bar/chipyard.git
