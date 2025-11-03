@@ -12,8 +12,6 @@ This document captures all the steps followed to:
 
 ## 🧱 1. System Setup (Ubuntu 22.04)
 
-## 🧱 1. System Setup (Ubuntu 22.04)
-
 ```bash
 sudo apt-get update
 sudo add-apt-repository -y ppa:git-core/ppa
@@ -42,6 +40,7 @@ sudo apt-get install -y \
 # 🧩 Install Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
+git submodule update --init --recursive
 ```
 
 ## ⚙️ 2. Chipyard Setup
