@@ -87,6 +87,7 @@ meson setup build_riscv --cross-file=../riscv64.txt
 ninja -C build_riscv -v
 # Verify build output
 ls build_riscv/
+cd ../../
 ```
 
 
