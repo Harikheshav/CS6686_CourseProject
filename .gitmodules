@@ -1,3 +1,6 @@
 [submodule "lc0"]
 	path = lc0
 	url = https://github.com/LeelaChessZero/lc0.git
+[submodule "FireMarshal"]
+	path = FireMarshal
+	url = https://github.com/firesim/FireMarshal.git
