@@ -55,9 +55,7 @@ source env.sh
 ```
 
 ---
-# ====================================================================
 # 2. Setup RISC-V toolchain, install zlib, and prepare LC0 build
-# ====================================================================
 
 ```bash
 # RISC-V cross compiler
