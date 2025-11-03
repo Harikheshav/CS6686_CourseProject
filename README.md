@@ -168,5 +168,5 @@ This was planned to be a Linux baseline. However, the boot stopped with OpenSBI 
 
 The plan was to boot Linux in the default VC707Config and, if it works, replace the `br-base.json` under prototype directory (as given in the above directory) with the above (to include binaries) and rebuild the Linux image using the above steps and run it on the VC707GemminiConfig bitstream generated above.
 
-After it works, the ONNX Runtime version given to Gemmini should have been used to cross-compile Gemmini and both the executables should have been compiled and compared.
+After it works, the ONNX Runtime version given to Gemmini should have been used to cross-compile another version of Leela Chess Zero and both the executables should have been compiled and compared.
 
