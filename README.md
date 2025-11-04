@@ -117,8 +117,9 @@ cd ../../
 
 ```bash
 cp ../VC707GemminiConfig.scala fpga/src/main/scala/vc707/
-make SUB_PROJECT=vc707 CONFIG=VC707GemminiConfig bitstream  # (Vivado with VC707 Board Files)
-cd ..
+cd fpga/src/main/scala/vc707/
+make SUB_PROJECT=VC707 CONFIG=VC707GemminiConfig bitstream  # (Vivado with VC707 Board Files)
+cd ../../../../../../
 ```
 
 ---
