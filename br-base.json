@@ -22,7 +22,7 @@
   "files" : [
       [ "trigger/start", "/usr/bin/firesim-start-trigger"],
       [ "trigger/end", "/usr/bin/firesim-end-trigger"],
-      ["lc0/build_riscv/lc0", "/root/lc0"],
-      ["t1-256x10-distilled-swa-2432500.pb.gz", "/root/"]
+      ["../../../../../lc0/build_riscv/lc0", "/root/lc0"],
+      ["../../../../../t1-256x10-distilled-swa-2432500.pb.gz", "/root/"]
   ]
 }

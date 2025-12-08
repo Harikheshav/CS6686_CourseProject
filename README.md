@@ -40,7 +40,8 @@ sudo apt-get install -y \
 # 🧩 Install Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
-git submodule update --init --recursive
+cd CS6686_CourseProject/
+git submodule update --init
 ```
 
 ## ⚙️ 2. Chipyard Setup
@@ -52,6 +53,7 @@ conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/ma
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 git submodule update --init generators/gemmini/
 source env.sh
+cd ..
 ```
 
 ---
@@ -95,11 +97,13 @@ export LDFLAGS="-L$ZLIB_ROOT/lib -lz"
 # Verify zlib files exist
 ls $ZLIB_ROOT/include/zlib.h
 ls $ZLIB_ROOT/lib/libz.a
+cd ../
 ```
 ### ============================================================
 ### Step 3: Build LC0 for RISC-V
 ### ============================================================
 ```bash
+cd lc0
 # Remove previous build directory
 rm -rf build_riscv
 # Setup Meson build
@@ -108,7 +112,7 @@ meson setup build_riscv --cross-file=../riscv64.txt
 ninja -C build_riscv -v
 # Verify build output
 ls build_riscv/
-cd ../../
+cd ../
 ```
 
 
@@ -116,6 +120,7 @@ cd ../../
 ## 🧩 4. Building a Gemmini based Bitstream for VC707
 
 ```bash
+cd chipyard/
 cp ../VC707GemminiConfig.scala fpga/src/main/scala/vc707/
 cd fpga/src/main/scala/vc707/
 make SUB_PROJECT=VC707 CONFIG=VC707GemminiConfig bitstream  # (Vivado with VC707 Board Files)
@@ -138,7 +143,7 @@ marshal -h
 ## 🧪 6. Build the Workload
 
 ```bash
-cp ../br-base.json images/firechip/br-base/
+cp ../br-base.json boards/firechip/base-workloads/
 marshal build br-base.json
 ```
 
@@ -153,10 +158,51 @@ qemu-system-riscv64 -machine virt -m 4G -nographic -bios none -kernel br-base-bi
 
 ---
 
+
+
+    
+
 ## 📝 Notes
 
 - Your LC0 binary will appear inside QEMU at `/root/lc0`  
 - Your weights file will appear at `/root/t1-256x10-distilled-swa-2432500.pb.gz`
+
+---
+## 8. Running Linux Image in QEMU and Executing LC0 Benchmark
+
+After building the workload using FireMarshal, the image directory will be located at:
+
+```bash
+images/firechip/br-base/
+
+---
+
+** Boot Linux in QEMU **
+
+cd images/firechip/br-base/
+
+qemu-system-riscv64 \
+    -machine virt \
+    -m 4G \
+    -nographic \
+    -bios none \
+    -kernel br-base-bin \
+    -drive file=br-base.img,format=raw,id=hd0 \
+    -device virtio-blk-device,drive=hd0
+
+** Run Leela Chess Zero Benchmark inside QEMU **
+./lc0 benchmark --weights=t1-256x10-distilled-swa-2432500.pb.gz
+
+** Shutdown the QEMU System **
+
+poweroff
+cd ../../../../
+
+## 🧱 8. Exit the directory
+
+```bash
+cd ../../../
+```
 
 ---
 

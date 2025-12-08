@@ -4,10 +4,10 @@
 # ============================================================
 
 [binaries]
-c = 'riscv64-unknown-elf-gcc'
-cpp = 'riscv64-unknown-elf-g++'
-ar = 'riscv64-unknown-elf-ar'
-strip = 'riscv64-unknown-elf-strip'
+c = 'riscv64-unknown-linux-gnu-gcc'
+cpp = 'riscv64-unknown-linux-gnu-g++'
+ar = 'riscv64-unknown-linux-gnu-ar'
+strip = 'riscv64-unknown-linux-gnu-strip'
 pkg-config = 'pkg-config'
 
 [host_machine]
@@ -21,10 +21,6 @@ endian = 'little'
 c_args = ['-O3', '-fPIC', '-fno-lto', '-march=rv64imafdc', '-mabi=lp64d']
 cpp_args = ['-O3', '-fPIC', '-fno-lto', '-march=rv64imafdc', '-mabi=lp64d','-static','-latomic']
 
-# Linker flags to always link your RISC-V zlib
-c_link_args = ['-Lzlib-1.3.1/install/lib', '-lz']
-cpp_link_args = ['-Lzlib-1.3.1/install/lib', '-lz']
-
 # Optional: include zlib headers globally
-c_include_dirs = ['zlib-1.3.1/install/include']
-cpp_include_dirs = ['zlib-1.3.1/install/include']
+c_include_dirs = ['../zlib-1.3.1/install/include']
+cpp_include_dirs = ['../zlib-1.3.1/install/include']
